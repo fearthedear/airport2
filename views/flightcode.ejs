@@ -11,8 +11,13 @@
     <script src="/javascripts/flightcode.js"></script>
   </head>
   <body>
-    <h1>All flights</h1>
+    <h3>Enter flight code</h3>
+      <form action="http://localhost:3000/getflight" method="post">
+        <input type="text" name="flightcode" placeholder="Enter Flight Code here">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+      </form>
 
+    <h3>All flights</h3>
     <table>
       <tr>
         <th>Code</th>

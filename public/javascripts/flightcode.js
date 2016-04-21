@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     $.getJSON("/database/flights.json", function(result){
-      console.log(result);
       for (var i = 0; i < result.length; i++) {
         var tr = $('<tr/>');
         tr.append("<td>" + result[i].code + "</td>");
@@ -12,4 +11,5 @@ $(document).ready(function () {
         $('table').append(tr);
       }
     });
+
 });

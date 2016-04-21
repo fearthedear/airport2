@@ -23,9 +23,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
+app.post('/getflight', function(req, res) {
+  res.send('You sent the code "' + req.body.flightcode + '".');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
