@@ -1,0 +1,19 @@
+[{
+	"code": "000",
+	"departure": "Rotterdam",
+	"arrival": "San Francisco",
+	"carrier": "Iceland Air",
+	"DaysOfWeek": "Mon, Wed, Fri"
+}, {
+	"code": "010",
+	"departure": "Amsterdam",
+	"arrival": "San Francisco",
+	"carrier": "Lufthansa",
+	"DaysOfWeek": "Mon, Wed, Fri"
+}, {
+	"code": "020",
+	"departure": "Hamburg",
+	"arrival": "San Francisco",
+	"carrier": "British Airways",
+	"DaysOfWeek": "Mon, Wed, Fri"
+}]
