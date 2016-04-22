@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Flights</title>
-  <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-  <script src="/javascripts/flightcode.js"></script>
+  <% include partials/head %>
 </head>
+
+<header>
+  <% include partials/header %>
+</header>
+
 <body>
   <h3>Enter flight code</h3>
   <form action="http://localhost:3000/getflight" method="post">
