@@ -17,6 +17,10 @@
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
       </form>
 
+      <% if (typeof flight !== 'undefined') { %>
+         <h2><%= flight %></h2>
+      <% } %>
+ 
     <h3>All flights</h3>
     <table>
       <tr>

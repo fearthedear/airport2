@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/flightcode', function (req, res) {
-  res.render('flightcode');
+  res.render('flightcode', { flight: ''});
 });
 
 
