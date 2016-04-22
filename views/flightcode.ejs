@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
   <title>Flights</title>
-    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <script src="/javascripts/flightcode.js"></script>
-  </head>
-  <body>
-    <h3>Enter flight code</h3>
-      <form action="http://localhost:3000/getflight" method="post">
-        <input type="text" name="flightcode" placeholder="Enter Flight Code here">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-      </form>
+  <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  <script src="/javascripts/flightcode.js"></script>
+</head>
+<body>
+  <h3>Enter flight code</h3>
+  <form action="http://localhost:3000/getflight" method="post">
+    <input type="text" name="flightcode" placeholder="Enter Flight Code here">
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+  </form>
 
-      <% if (typeof flight !== 'undefined') { %>
-         <h2><%= flight %></h2>
-      <% } %>
- 
-    <h3>All flights</h3>
-    <table>
-      <tr>
-        <th>Code</th>
-        <th>Departure City</th>
-        <th>Arrival City</th>
-        <th>Carrier</th>
-        <th>Days of Week</th>
-      </tr>
-    </table>
-  </body>
+  <% if (JSON.stringify(flight).length>20) { %>
+  <p></p>
+  <table>
+    <tr>
+      <th>Code</th>
+      <th>Departure City</th>
+      <th>Arrival City</th>
+      <th>Carrier</th>
+      <th>Days of Week</th>
+    </tr>
+    <tr>
+      <td><%= flight["code"] %></td>
+      <td><%= flight["departure"] %></td>
+      <td><%= flight["arrival"] %></td>
+      <td><%= flight["carrier"] %></td>
+      <td><%= flight["DaysOfWeek"] %></td>
+    </tr>
+  </table>
+  <% } else if (flight=="not found") { %>  
+   <p>Sorry! No flight found for this code. Try entering a new code.</p>
+  <% } %>
+
+  <h3>All flights</h3>
+  <table id="allflights">
+    <tr>
+      <th>Code</th>
+      <th>Departure City</th>
+      <th>Arrival City</th>
+      <th>Carrier</th>
+      <th>Days of Week</th>
+    </tr>
+  </table>
+</body>
 
 </html>

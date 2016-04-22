@@ -27,8 +27,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/getflight', function(req, res) {
-  res.render('flightcode', { flight: req.body.flightcode });
-  //res.send('You sent the code "' + req.body.flightcode + '".');
+  var flight = req.body.flightcode;
+  var flights = JSON.parse(fs.readFileSync("public/database/flights.json", 'utf8'));
+  var flightdata;
+  var hits = 0;
+  for (i=0; i<flights.length; i++) {
+    //console.log(flights[i]["code"]);
+    if(flights[i]["code"] === flight) {
+      flightdata = flights[i];
+      hits += 1;
+      console.log(flightdata);
+      }    
+    }
+    if (hits==0) {
+      flightdata = "not found";
+    }
+  res.render('flightcode', { flight: flightdata });
 });
 
 // catch 404 and forward to error handler

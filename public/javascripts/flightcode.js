@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $.getJSON("/database/flights.json", function(result){
+    $.getJSON("database/flights.json", function(result){
       for (var i = 0; i < result.length; i++) {
         var tr = $('<tr/>');
         tr.append("<td>" + result[i].code + "</td>");
@@ -8,8 +8,7 @@ $(document).ready(function () {
         tr.append("<td>" + result[i].arrival + "</td>");
         tr.append("<td>" + result[i].carrier + "</td>");
         tr.append("<td>" + result[i].DaysOfWeek + "</td>");
-        $('table').append(tr);
+        $('#allflights').append(tr);
       }
     });
-
 });
