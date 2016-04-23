@@ -22,6 +22,7 @@ $(document).ready(function () {
         tr.append("<td>" + result[i].DaysOfWeek + "</td>");
         tr.append("<td>" + result[i].lane + "</td>");
         tr.append("<td>" + result[i].date + "</td>");
+        tr.append("<td>" + result[i].time + "</td>");
         tr.append("<td>" + result[i].controllerCode + "</td>");
         tr.append("<td>" + result[i].controller + "</td>");
         $('#arrivals').append(tr);
@@ -38,6 +39,7 @@ $(document).ready(function () {
         tr.append("<td>" + result[i].DaysOfWeek + "</td>");
         tr.append("<td>" + result[i].lane + "</td>");
         tr.append("<td>" + result[i].date + "</td>");
+        tr.append("<td>" + result[i].time + "</td>");
         tr.append("<td>" + result[i].controllerCode + "</td>");
         tr.append("<td>" + result[i].controller + "</td>");
         $('#departures').append(tr);

@@ -60,3 +60,8 @@ li a {
 	margin-top: 50px;
 	margin-bottom: 0px;
 }
+
+#arrivals, #departures {
+	max-width: 1200px;
+	margin: 0 auto;
+}
