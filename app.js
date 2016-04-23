@@ -45,6 +45,44 @@ app.post('/getflight', function(req, res) {
   res.render('flightcode', { flight: flightdata });
 });
 
+app.post('/codeArrival', function(req, res) {
+  code = req.body.flightcode;
+  var flights = JSON.parse(fs.readFileSync("public/database/flights.json", 'utf8'));
+  var flightdata;
+  var hits = 0;
+  for (i=0; i<flights.length; i++) {
+    //console.log(flights[i]["code"]);
+    if(flights[i]["code"] === code) {
+      flightdata = flights[i];
+      hits += 1;
+      console.log(flightdata);
+      }    
+    }
+    if (hits==0) {
+      flightdata = "not found";
+    }
+  res.render('arrival', { flight: flightdata } )
+});
+
+app.post('/codeDeparture', function(req, res) {
+  code = req.body.flightcode;
+  var flights = JSON.parse(fs.readFileSync("public/database/flights.json", 'utf8'));
+  var flightdata;
+  var hits = 0;
+  for (i=0; i<flights.length; i++) {
+    //console.log(flights[i]["code"]);
+    if(flights[i]["code"] === code) {
+      flightdata = flights[i];
+      hits += 1;
+      console.log(flightdata);
+      }    
+    }
+    if (hits==0) {
+      flightdata = "not found";
+    }
+  res.render('departure', { flight: flightdata } )
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

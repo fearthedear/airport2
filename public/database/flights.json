@@ -16,4 +16,23 @@
 	"arrival": "San Francisco",
 	"carrier": "British Airways",
 	"DaysOfWeek": "Mon, Wed, Fri"
+}, {
+	"code": "030",
+	"departure": "San Francisco",
+	"arrival": "Rotterdam",
+	"carrier": "Iceland Air",
+	"DaysOfWeek": "Mon, Wed, Fri"
+}, {
+	"code": "040",
+	"departure": "San Francisco",
+	"arrival": "Amsterdam",
+	"carrier": "Lufthansa",
+	"DaysOfWeek": "Mon, Wed, Fri"
+}, {
+	"code": "050",
+	"departure": "San Franscisco",
+	"arrival": "Bratislava",
+	"carrier": "British Airways",
+	"DaysOfWeek": "Mon, Wed, Fri"
 }]
+

@@ -1,0 +1,12 @@
+[{
+	"code": "000",
+	"departure": "Rotterdam",
+	"arrival": "San Francisco",
+	"carrier": "Iceland Air",
+	"DaysOfWeek": "Mon, Wed, Fri",
+	"lane": "2",
+	"time": "2012-04-23T18:25:43.511Z",
+	"controllerCode": "9999",
+	"controller": "Michael Michael"
+}]
+
