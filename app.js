@@ -81,7 +81,8 @@ app.post('/codeArrival', function(req, res) {
   res.render('arrival', { 
     flight: flightdata,
     dates: dates,
-    noController: ''
+    noController: '',
+    flightExists: ''
   } )
 });
 
@@ -122,7 +123,8 @@ app.post('/codeDeparture', function(req, res) {
   res.render('departure', { 
     flight: flightdata,
     dates: dates,
-    noController: ''
+    noController: '',
+    flightExists: ''
   } )
 });
 
@@ -151,14 +153,15 @@ app.post('/postFlight', function(req, res) {
     res.render('arrival', {
       flight: flight,
       dates: dates,
-      noController: 'yes'
+      noController: 'yes',
+      flightExists: ''
     })
   }
 
   else {
 
     var arrivals = JSON.parse(fs.readFileSync("public/database/arrivals.json", 'utf8'));
-    
+
     var date = req.body.date;
     var time = req.body.time;
     var lane = req.body.lane;
@@ -170,6 +173,18 @@ app.post('/postFlight', function(req, res) {
   object.time = time;
   object.controllerCode = controllerCode;
   object.controller = controllerName;
+
+  //checking if flight exists in database
+  for (l=0; l<arrivals.length; l++) {
+    if (JSON.stringify(object) === JSON.stringify(arrivals[l])) {
+      res.render('arrival', {
+        flight: flight,
+        dates: dates,
+        noController: '',
+        flightExists: 'yes'
+      })
+    }
+  }
 
   var arrivalFile = "public/database/arrivals.json"
   //appending object to arrivals.json
@@ -190,12 +205,8 @@ app.post('/postFlightD', function(req, res) {
   for (i=0; i<flights.length; i++) {
     if (flights[i]["code"]==code) {
       flight = flights[i];
-
     }
   }
-
-
-  
 
   //fetching controller name
   chits = 0;
@@ -213,13 +224,14 @@ app.post('/postFlightD', function(req, res) {
     res.render('arrival', {
       flight: flight,
       dates: dates,
-      noController: 'yes'
+      noController: 'yes',
+      flightExists: ''
     })
   }
 
   else {
     var departures = JSON.parse(fs.readFileSync("public/database/departures.json", 'utf8'));
-    
+
     var date = req.body.date;
     var time = req.body.time;
     var lane = req.body.lane;
@@ -232,7 +244,19 @@ app.post('/postFlightD', function(req, res) {
   object.controllerCode = controllerCode;
   object.controller = controllerName;
 
-  var departFile = "public/database/departures.json"
+    //checking if flight exists in database
+    for (l=0; l<departures.length; l++) {
+      if (JSON.stringify(object) === JSON.stringify(departures[l])) {
+        res.render('departure', {
+          flight: flight,
+          dates: dates,
+          noController: '',
+          flightExists: 'yes'
+        })
+      }
+    }
+
+    var departFile = "public/database/departures.json"
   //appending object to departueres.json
   departures.push(object);
   //writing to disk

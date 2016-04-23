@@ -41,6 +41,7 @@
 
   <p class="register">Register arrival by adding the details below:</p>
   <% if (noController == "yes") { %> <p style="color: red">No controller found for this code. Try again</p> <% } %>
+  <% if (flightExists == "yes") { %> <p style="color: red">Flight was already recorded.</p> <% } %>
   <table class="details responsive-table">
   <tr>
     <form action="http://localhost:3000/postFlight" method="post">
