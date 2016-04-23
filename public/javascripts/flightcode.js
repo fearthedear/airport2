@@ -11,6 +11,7 @@ $(document).ready(function () {
         $('#allflights').append(tr);
       }
     });
+    $(".button-collapse").sideNav();
 });
 
 

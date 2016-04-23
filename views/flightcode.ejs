@@ -11,13 +11,13 @@
 <body id="flightcode">
   <h3>Enter flight code</h3>
   <form action="http://localhost:3000/getflight" method="post">
-    <input type="datetime-local" name="flightcode" placeholder="Enter Flight Code here">
+    <input type="text" name="flightcode" placeholder="Enter Flight Code here">
     <button class="btn waves-effect blue-grey" type="submit" name="action">Submit</button>
   </form>
 
   <% if (JSON.stringify(flight).length>20) { %>
   <p>The details for flight <%= flight["code"] %>:</p>
-  <table  class="flights">
+  <table class="flights bordered responsive-table">
     <tr>
       <th>Code</th>
       <th>Departure City</th>
@@ -38,7 +38,7 @@
   <% } %>
 
   <h3>All flights</h3>
-  <table id="allflights">
+  <table id="allflights" class="bordered responsive-table">
     <tr>
       <th>Code</th>
       <th>Departure City</th>
