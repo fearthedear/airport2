@@ -1,11 +1,39 @@
-body {
+#home {
 	background: url(http://localhost:3000/images/airport.jpg) no-repeat center center fixed;
 	background-size: cover;
 	height: 100%; width: 100%;
 	text-align: center;
 }
 
+h1 {
+	color: white;
+	font-weight: bold;
+}
+
+#subheading {
+	color: white;
+	font-size: 15pt;
+}
 .btn {
 	margin: 15px;
 }
 
+#buttons {
+	margin-top: 100px;
+}
+
+table {
+	background-color: white;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+#flightcode {
+	text-align: center;
+}
+
+input {
+	max-width: 200px;
+	display: inline-block;
+	margin: 0 auto;
+}
