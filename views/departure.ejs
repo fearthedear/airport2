@@ -1,47 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% include partials/head %>
+  <% include partials/head %>
 </head>
 
 <header>
-	<% include partials/header %>
+  <% include partials/header %>
 </header>
 
 <body id="departure">
-	<p>In order to register a departure, please fill in the flight code.</p>
-	<form action="http://localhost:3000/codeDeparture" method="post">
-		<input type="text" name="flightcode" placeholder="Enter Flight Code here">
-		<button class="btn waves-effect blue-grey" type="submit" name="action">Submit</button>
-	</form>
+  <p>In order to register a departure, please fill in the flight code.</p>
+  <form action="http://localhost:3000/codeDeparture" method="post">
+    <input type="text" name="flightcode" placeholder="Enter Flight Code here">
+    <button class="btn waves-effect blue-grey" type="submit" name="action">Submit</button>
+  </form>
 
-	<% if (JSON.stringify(flight).length>20) { %>
-	<table  class="flights bordered responsive-table">
-		<tr>
-			<th>Code</th>
-			<th>Departure City</th>
-			<th>Arrival City</th>
-			<th>Carrier</th>
-			<th>Days of Week</th>
-		</tr>
-		<tr>
-			<td><%= flight["code"] %></td>
-			<td><%= flight["departure"] %></td>
-			<td><%= flight["arrival"] %></td>
-			<td><%= flight["carrier"] %></td>
-			<td><%= flight["DaysOfWeek"] %></td>
-		</tr>
-	</table>
-	<p>Register arrival by adding the details below:</p>
-	<form action="" method="post">
-		<input type="datetime-local" name="time">
-		<input type="text" name="controllerCode" placeholder="Controller Code">
-		<input type="text" name="lane" placeholder="Lane">
-		<button class="btn waves-effect blue-grey" type="submit" name="action">Submit</button>
-	</form>
-	<% } else if (flight=="not found") { %>   
-	<p>Sorry! No flight found for this code. Try entering a new code.</p>
-	<% } %>
+  <% if (JSON.stringify(flight).length>20) { %>
+  <table class="flights bordered responsive-table">
+    <tr>
+      <th>Code</th>
+      <th>Departure City</th>
+      <th>Arrival City</th>
+      <th>Carrier</th>
+      <th>Days of Week</th>
+      <th>Arrivals last week</th>
+    </tr>
+    <tr>
+      <td><%= flight["code"] %></td>
+      <td><%= flight["departure"] %></td>
+      <td><%= flight["arrival"] %></td>
+      <td><%= flight["carrier"] %></td>
+      <td><%= flight["DaysOfWeek"]%></td>
+      <% if (dates == "No flights") { %>
+      <td>No flights</td>
+      <% } else { %>
+      <td><% for (i=0; i<dates.length; i++) { %> <%= dates[i]["Date"] %> <%= dates[i]["Time"] %> <br> <% } %> </td>
+      <% } %>
+    </tr>
+  </table>
+
+  <p>Register departure by adding the details below:</p>
+  <table class="details">
+  <tr>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Lane</th>
+    <th>Controller Code</th>
+  </tr>
+  <tr>
+    <form action="" method="post">
+      <td><input type="date" name="time"></td>
+      <td><input type="time" name="time"></td>
+      <td><input type="text" name="lane" placeholder="Lane"></td>
+      <td><input type="text" name="controllerCode" placeholder="Controller Code"></td>
+      <td><button class="btn waves-effect blue-grey" type="submit" name="action">Submit</button></td>
+    </form>
+  </tr>
+  </table>
+  <% } else if (flight=="not found") { %>  
+  <p>Sorry! No flight found for this code. Try entering a new code.</p>
+  <% } %>
 
 </body>
 

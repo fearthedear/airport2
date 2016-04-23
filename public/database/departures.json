@@ -1,0 +1,25 @@
+[{
+	"code": "030",
+	"departure": "San Francisco",
+	"arrival": "Rotterdam",
+	"carrier": "Iceland Air",
+	"DaysOfWeek": "Mon, Wed, Fri",
+	"lane": "1",
+	"date": "04/23/2016",
+	"time": "1:46:30 PM",
+	"controllerCode": "7777",
+	"controller": "Howard Howard"
+},
+{
+	"code": "030",
+	"departure": "San Francisco",
+	"arrival": "Rotterdam",
+	"carrier": "Iceland Air",
+	"DaysOfWeek": "Mon, Wed, Fri",
+	"lane": "1",
+	"date": "04/20/2016",
+	"time": "1:46:30 PM",
+	"controllerCode": "7777",
+	"controller": "Howard Howard"
+}]
+

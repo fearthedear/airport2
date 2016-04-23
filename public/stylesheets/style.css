@@ -26,8 +26,13 @@ h1 {
 	margin-top: 100px;
 }
 
-#allflights, .flights {
+#allflights {
 	max-width: 600px;
+	margin: 0 auto;
+}
+
+.flights {
+	max-width: 800px;
 	margin: 0 auto;
 }
 

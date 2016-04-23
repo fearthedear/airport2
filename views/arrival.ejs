@@ -23,13 +23,19 @@
       <th>Arrival City</th>
       <th>Carrier</th>
       <th>Days of Week</th>
+      <th>Arrivals last week</th>
     </tr>
     <tr>
       <td><%= flight["code"] %></td>
       <td><%= flight["departure"] %></td>
       <td><%= flight["arrival"] %></td>
       <td><%= flight["carrier"] %></td>
-      <td><%= flight["DaysOfWeek"] %></td>
+      <td><%= flight["DaysOfWeek"]%></td>
+      <% if (dates == "No flights") { %>
+      <td>No flights</td>
+      <% } else { %>
+      <td><% for (i=0; i<dates.length; i++) { %> <%= dates[i]["Date"] %> <%= dates[i]["Time"] %> <br> <% } %> </td>
+      <% } %>
     </tr>
   </table>
 

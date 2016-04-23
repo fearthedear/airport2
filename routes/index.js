@@ -12,13 +12,17 @@ router.get('/flightcode', function (req, res) {
 });
 
 router.get('/arrival', function (req, res) {
-	res.render('arrival', 
-		{ flight: ''})
+	res.render('arrival', { 
+		flight: '',
+		dates: '',
+		})
 });
 
 router.get('/departure', function (req, res) {
-	res.render('departure', 
-		{ flight: ''} )
+	res.render('departure', { 
+		flight: '',
+		dates: '',
+	} )
 });
 
 

@@ -5,7 +5,20 @@
 	"carrier": "Iceland Air",
 	"DaysOfWeek": "Mon, Wed, Fri",
 	"lane": "2",
-	"time": "2012-04-23T18:25:43.511Z",
+	"date": "04/23/2016",
+	"time": "1:46:30 PM",
+	"controllerCode": "9999",
+	"controller": "Michael Michael"
+},
+{
+	"code": "000",
+	"departure": "Rotterdam",
+	"arrival": "San Francisco",
+	"carrier": "Iceland Air",
+	"DaysOfWeek": "Mon, Wed, Fri",
+	"lane": "2",
+	"date": "04/20/2016",
+	"time": "1:46:30 PM",
 	"controllerCode": "9999",
 	"controller": "Michael Michael"
 }]
