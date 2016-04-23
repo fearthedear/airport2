@@ -31,6 +31,10 @@ router.get('/arrAndDep', function (req, res) {
   res.render('arrAndDep', { redirect: ''});
 });
 
+router.get('/controllers', function (req, res) {
+  res.render('controllers');
+});
+
 
 
 module.exports = router;

@@ -5,7 +5,7 @@
 	text-align: center;
 }
 
-#flightcode, #arrival, #departure, #arrAndDep {
+#flightcode, #arrival, #departure, #arrAndDep, #controllers {
 	text-align: center;
 }
 
@@ -28,6 +28,11 @@ h1 {
 
 #allflights {
 	max-width: 600px;
+	margin: 0 auto;
+}
+
+#allcontrollers {
+	max-width: 250px;
 	margin: 0 auto;
 }
 

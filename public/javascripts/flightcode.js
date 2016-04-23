@@ -44,7 +44,14 @@ $(document).ready(function () {
     }
 });
 
-
+        $.getJSON("database/controllers.json", function(result){
+      for (var i = 0; i < result.length; i++) {
+        var tr = $('<tr/>');
+        tr.append("<td>" + result[i].code + "</td>");
+        tr.append("<td>" + result[i].name + "</td>");
+        $('#allcontrollers').append(tr);
+    }
+});
 
     $(".button-collapse").sideNav();
 });
