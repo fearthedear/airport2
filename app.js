@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require("fs");
+var jsonfile = require("jsonfile");
 
 var routes = require('./routes/index');
 
@@ -36,11 +37,11 @@ app.post('/getflight', function(req, res) {
       flightdata = flights[i];
       hits += 1;
       console.log(flightdata);
-      }    
-    }
-    if (hits==0) {
-      flightdata = "not found";
-    }
+    }    
+  }
+  if (hits==0) {
+    flightdata = "not found";
+  }
   res.render('flightcode', { flight: flightdata });
 });
 
@@ -57,19 +58,19 @@ app.post('/codeArrival', function(req, res) {
       flightdata = flights[i];
       hits += 1;
       console.log(flightdata);
-      }    
-    }
-    if (hits===0) {
-      flightdata = "not found";
-    }
+    }    
+  }
+  if (hits===0) {
+    flightdata = "not found";
+  }
   for (j=0; j<arrivals.length; j++) {
     if (arrivals[j]["code"] === code) {
       var x = new Date(arrivals[j]["date"]);
       var y = new Date();
       y.setDate(y.getDate()-7);
       if (x -y >= 0 ) {
-      hits2 += 1;
-      dates.push({Date:arrivals[j]["date"], Time:arrivals[j]["time"]});
+        hits2 += 1;
+        dates.push({Date:arrivals[j]["date"], Time:arrivals[j]["time"]});
       }
     }
   }
@@ -79,9 +80,12 @@ app.post('/codeArrival', function(req, res) {
 
   res.render('arrival', { 
     flight: flightdata,
-    dates: dates
+    dates: dates,
+    noController: ''
   } )
 });
+
+var dates = [];
 
 app.post('/codeDeparture', function(req, res) {
   code = req.body.flightcode;
@@ -95,19 +99,19 @@ app.post('/codeDeparture', function(req, res) {
     if(flights[i]["code"] === code) {
       flightdata = flights[i];
       hits += 1;
-      }    
-    }
-    if (hits===0) {
-      flightdata = "not found";
-    }
+    }    
+  }
+  if (hits===0) {
+    flightdata = "not found";
+  }
   for (j=0; j<departures.length; j++) {
     if (departures[j]["code"] === code) {
       var x = new Date(departures[j]["date"]);
       var y = new Date();
       y.setDate(y.getDate()-7);
       if (x -y >= 0 ) {
-      hits2 += 1;
-      dates.push({Date:departures[j]["date"], Time:departures[j]["time"]});
+        hits2 += 1;
+        dates.push({Date:departures[j]["date"], Time:departures[j]["time"]});
       }
     }
   }
@@ -117,9 +121,129 @@ app.post('/codeDeparture', function(req, res) {
 
   res.render('departure', { 
     flight: flightdata,
-    dates: dates
+    dates: dates,
+    noController: ''
   } )
 });
+
+app.post('/postFlight', function(req, res) {
+  var code = req.body.code;
+  var flights = JSON.parse(fs.readFileSync("public/database/flights.json", 'utf8'));
+  var flight;
+  for (i=0; i<flights.length; i++) {
+    if (flights[i]["code"]==code) {
+      flight = flights[i];
+    }
+  }
+
+  //fetching controller name
+  var controllers = JSON.parse(fs.readFileSync("public/database/controllers.json", 'utf8'));
+  var controllerCode = req.body.controllerCode;
+  var controllerName;
+  chits = 0;
+  for (j=0; j<controllers.length; j++) {
+    if (controllers[j]["code"] == controllerCode) {
+      controllerName = controllers[j]["name"];
+      chits += 1;
+    }
+  }
+  if (chits == 0) {
+    res.render('arrival', {
+      flight: flight,
+      dates: dates,
+      noController: 'yes'
+    })
+  }
+
+  else {
+
+    var arrivals = JSON.parse(fs.readFileSync("public/database/arrivals.json", 'utf8'));
+    
+    var date = req.body.date;
+    var time = req.body.time;
+    var lane = req.body.lane;
+
+  //creating new object to be appended to arrivals.json
+  var object = flight;
+  object.lane = lane;
+  object.date = date;
+  object.time = time;
+  object.controllerCode = controllerCode;
+  object.controller = controllerName;
+
+  var arrivalFile = "public/database/arrivals.json"
+  //appending object to arrivals.json
+  arrivals.push(object);
+  //writing to disk
+  jsonfile.writeFile(arrivalFile, arrivals, function (err) {
+    console.error(err)
+  })
+  res.render('arrAndDep', { redirect: "yes"});
+}
+});
+
+app.post('/postFlightD', function(req, res) {
+  var code = req.body.code;
+  var flights = JSON.parse(fs.readFileSync("public/database/flights.json", 'utf8'));
+  var flight;
+
+  for (i=0; i<flights.length; i++) {
+    if (flights[i]["code"]==code) {
+      flight = flights[i];
+
+    }
+  }
+
+
+  
+
+  //fetching controller name
+  chits = 0;
+  var controllers = JSON.parse(fs.readFileSync("public/database/controllers.json", 'utf8'));
+  var controllerCode = req.body.controllerCode;
+  var controllerName;
+  for (j=0; j<controllers.length; j++) {
+    if (controllers[j]["code"] == controllerCode) {
+      controllerName = controllers[j]["name"];
+      chits += 1;
+    }
+  }
+
+  if (chits == 0) {
+    res.render('arrival', {
+      flight: flight,
+      dates: dates,
+      noController: 'yes'
+    })
+  }
+
+  else {
+    var departures = JSON.parse(fs.readFileSync("public/database/departures.json", 'utf8'));
+    
+    var date = req.body.date;
+    var time = req.body.time;
+    var lane = req.body.lane;
+
+  //creating new object to be appended to departures.json
+  var object = flight;
+  object.lane = lane;
+  object.date = date;
+  object.time = time;
+  object.controllerCode = controllerCode;
+  object.controller = controllerName;
+
+  var departFile = "public/database/departures.json"
+  //appending object to departueres.json
+  departures.push(object);
+  //writing to disk
+  jsonfile.writeFile(departFile, departures, function (err) {
+    console.error(err)
+  });
+  res.render('arrAndDep', {redirect: "yes"} );
+}
+});
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -39,20 +39,16 @@
     </tr>
   </table>
 
-  <p>Register departure by adding the details below:</p>
-  <table class="details">
+  <p class="register">Register departure by adding the details below:</p>
+  <% if (noController == "yes") { %> <p style="color: red">No controller found for this code. Try again</p> <% } %>
+<table class="details responsive-table">
   <tr>
-    <th>Date</th>
-    <th>Time</th>
-    <th>Lane</th>
-    <th>Controller Code</th>
-  </tr>
-  <tr>
-    <form action="" method="post">
-      <td><input type="date" name="time"></td>
-      <td><input type="time" name="time"></td>
-      <td><input type="text" name="lane" placeholder="Lane"></td>
-      <td><input type="text" name="controllerCode" placeholder="Controller Code"></td>
+    <form action="http://localhost:3000/postFlightD" method="post">
+      <td><div class="input-field col s12"><input type="text" name="code" id="code" value="<%= flight["code"]%>"><label for="code">Code</label></div></td>
+      <td><div class="input-field col s12"><input type="text" name="date" id="date"><label for="date">Date (MM/DD/YYYY)</label></div></td>
+      <td><div class="input-field col s12"><input type="text" name="time" id="time"><label for="time">Time (H:MM:SS AM/PM)</label></div></td>
+      <td><div class="input-field col s12"><input type="text" name="lane" id="lane"><label for="lane">Lane</label></div></td>
+      <td><div class="input-field col s12"><input type="text" name="controllerCode" id="controllerCode" ><label for="controllerCode">Controller Code</label></td>
       <td><button class="btn waves-effect blue-grey" type="submit" name="action">Submit</button></td>
     </form>
   </tr>

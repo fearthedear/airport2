@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include partials/head %>
+</head>
+
+<header>
+	<% include partials/header %>
+</header>
+
+
+<body id="arrAndDep">
+	<% if (redirect == "yes") { %> <p id="thanks">Thanks for recording the flight!</p> <% } %>
+	<h3>All Arrivals</h3>
+	<table id="arrivals" class="bordered responsive-table">
+		<tr>
+			<th>Code</th>
+			<th>Departure City</th>
+			<th>Arrival City</th>
+			<th>Carrier</th>
+			<th>Lane</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Controller Code</th>
+			<th>Controller</th>
+		</tr>
+	</table>
+
+	<h3>All Departures</h3>
+	<table id="departures" class="bordered responsive-table">
+		<tr>
+			<th>Code</th>
+			<th>Departure City</th>
+			<th>Arrival City</th>
+			<th>Carrier</th>
+			<th>Lane</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Controller Code</th>
+			<th>Controller</th>
+		</tr>
+	</table>
+
+</body>

@@ -5,7 +5,7 @@
 	text-align: center;
 }
 
-#flightcode, #arrival, #departure {
+#flightcode, #arrival, #departure, #arrAndDep {
 	text-align: center;
 }
 
@@ -37,7 +37,7 @@ h1 {
 }
 
 .details {
-	max-width: 800px;
+	max-width: 1100px;
 	margin: 0 auto;
 }
 
@@ -49,4 +49,9 @@ input {
 
 li a {
 	color: white;
+}
+
+.register {
+	margin-top: 50px;
+	margin-bottom: 0px;
 }

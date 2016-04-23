@@ -15,6 +15,7 @@ router.get('/arrival', function (req, res) {
 	res.render('arrival', { 
 		flight: '',
 		dates: '',
+		noController: '',
 		})
 });
 
@@ -22,8 +23,14 @@ router.get('/departure', function (req, res) {
 	res.render('departure', { 
 		flight: '',
 		dates: '',
+		noController: '',
 	} )
 });
+
+router.get('/arrAndDep', function (req, res) {
+  res.render('arrAndDep', { redirect: ''});
+});
+
 
 
 module.exports = router;
