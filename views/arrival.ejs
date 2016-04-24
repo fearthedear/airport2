@@ -10,7 +10,7 @@
 
 <body id="arrival">
   <p>In order to register an arrival, please fill in the flight code.</p>
-  <form action="http://localhost:3000/codeArrival" method="post">
+  <form action="/codeArrival" method="post">
     <input type="text" name="flightcode" placeholder="Enter Flight Code here">
     <button class="btn waves-effect blue-grey" type="submit" name="action">Submit</button>
   </form>
@@ -44,7 +44,7 @@
   <% if (flightExists == "yes") { %> <p style="color: red">Flight was already recorded.</p> <% } %>
   <table class="details responsive-table">
   <tr>
-    <form action="http://localhost:3000/postFlight" method="post">
+    <form action="/postFlight" method="post">
       <td><div class="input-field col s12"><input type="text" name="code" id="code" value="<%= flight["code"]%>"><label for="code">Code</label></div></td>
       <td><div class="input-field col s12"><input type="text" name="date" id="date"><label for="date">Date (MM/DD/YYYY)</label></div></td>
       <td><div class="input-field col s12"><input type="text" name="time" id="time"><label for="time">Time (H:MM:SS AM/PM)</label></div></td>
@@ -54,7 +54,7 @@
     </form>
   </tr>
   </table>
-  <% } else if (flight=="not found") { %>  
+  <% } else if (flight=="not found") { %>
   <p>Sorry! No flight found for this code. Try entering a new code.</p>
   <% } %>
 
